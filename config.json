@@ -6,38 +6,38 @@
     "colors": [
         {
             "name": "red",
-            "s_path": "C:/Users/sylva/Documents/maya/2019/scripts/controllerSelector/red_button_selected.png",
-            "u_path": "C:/Users/sylva/Documents/maya/2019/scripts/controllerSelector/red_button.png"
+            "s_path": "red_button_selected.png",
+            "u_path": "red_button.png"
         }, 
         {
             "name": "blue",
-            "s_path": "C:/Users/sylva/Documents/maya/2019/scripts/controllerSelector/blue_button_selected.png",
-            "u_path": "C:/Users/sylva/Documents/maya/2019/scripts/controllerSelector/blue_button.png"
+            "s_path": "blue_button_selected.png",
+            "u_path": "blue_button.png"
         }, 
         {
             "name": "green",
-            "s_path": "C:/Users/sylva/Documents/maya/2019/scripts/controllerSelector/green_button_selected.png",
-            "u_path": "C:/Users/sylva/Documents/maya/2019/scripts/controllerSelector/green_button.png"
+            "s_path": "green_button_selected.png",
+            "u_path": "green_button.png"
         }, 
         {
             "name": "orange",
-            "s_path": "C:/Users/sylva/Documents/maya/2019/scripts/controllerSelector/orange_button_selected.png",
-            "u_path": "C:/Users/sylva/Documents/maya/2019/scripts/controllerSelector/orange_button.png"
+            "s_path": "orange_button_selected.png",
+            "u_path": "orange_button.png"
         }, 
         {
             "name": "grey",
-            "s_path": "C:/Users/sylva/Documents/maya/2019/scripts/controllerSelector/grey_button_selected.png",
-            "u_path": "C:/Users/sylva/Documents/maya/2019/scripts/controllerSelector/grey_button.png"
+            "s_path": "grey_button_selected.png",
+            "u_path": "grey_button.png"
         }
     ],
     "tabs": [
         {
             "name" : "Body",
-            "background" : "C:/Users/sylva/Documents/maya/2019/scripts/controllerSelector/background1.jpg"
+            "background" : "background1.jpg"
         },
         {
             "name" : "Hands",
-            "background" : "C:/Users/sylva/Documents/maya/2019/scripts/controllerSelector/background2.jpg"
+            "background" : "background2.jpg"
         }
     ],
     "buttons": [
@@ -88,16 +88,16 @@
             "left_offset" : 230,
             "group" : "spine",
             "tab": "Body",
-            "s_path" : "C:/Users/sylva/Documents/maya/2019/scripts/controllerSelector/group_selected.png", 
-            "u_path" : "C:/Users/sylva/Documents/maya/2019/scripts/controllerSelector/group_unselected.png" 
+            "s_path" : "group_selected.png", 
+            "u_path" : "group_unselected.png" 
         },
         {
             "top_offset" : 250,
             "left_offset" : 230,
             "group" : "head",
             "tab": "Hands",
-            "s_path" : "C:/Users/sylva/Documents/maya/2019/scripts/controllerSelector/group_selected.png", 
-            "u_path" : "C:/Users/sylva/Documents/maya/2019/scripts/controllerSelector/group_unselected.png" 
+            "s_path" : "group_selected.png", 
+            "u_path" : "group_unselected.png" 
         }
     ]
 }

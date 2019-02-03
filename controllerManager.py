@@ -46,6 +46,10 @@ class ControllerManager():
         """
         if object_name in self._selection_list:
             self._selection_list.remove(object_name)
+            
+    def clear_selection(self):
+        self._selection_list = []
+
                     
     def get_selection_list(self):
         return self._selection_list

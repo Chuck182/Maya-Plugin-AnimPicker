@@ -1,6 +1,5 @@
 import json
 import sys
-#sys.path.append(r'C:\Users\sylva\Documents\maya\2019\scripts\controllerSelector')
 import customButton
 reload(customButton)
 
