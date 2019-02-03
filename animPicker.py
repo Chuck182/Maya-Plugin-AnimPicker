@@ -29,18 +29,23 @@ def create_window(conf, window, tabs, width, height):
         b = cmds.button("tab_"+tab_button.name, label="Select "+tab_button.name, backgroundColor=tab_button.color)
         tab_button.set_ui("tab_"+tab_button.name)
         cmds.button(b, edit=True, command=partial(tab_button_callback, tab_button))
+        
+    cmds.formLayout(width=140,height=20)
+    cmds.setParent("..")
+    cmds.button("reset_selection", label="Reset selection", backgroundColor=(0.4,0.4,0.4), command=reset_selection_callback)
+
 
     cmds.setParent("..")
     
     tabLayout = cmds.tabLayout(height=height+20, width=width)
     
-    for name, background in tabs.iteritems():
+    for tab in ctrlManager.tab_buttons: 
         # Configure tab in formLayout
         form = cmds.formLayout()
-        cmds.tabLayout(tabLayout, edit=True, tabLabel=[form, name])
-        cmds.image(image=root_path+background)
-        add_buttons(conf.buttons, form, name)
-        add_group_buttons(conf.group_buttons, form, name)
+        cmds.tabLayout(tabLayout, edit=True, tabLabel=[form, tab.name])
+        cmds.image(image=root_path+tabs[tab.name])
+        add_buttons(conf.buttons, form, tab.name)
+        add_group_buttons(conf.group_buttons, form, tab.name)
         cmds.setParent("..")
 
 def add_buttons(buttons, layout, tab):
@@ -122,6 +127,16 @@ def clear_selection(*args):
     ctrlManager.clear_selection()
     cmds.select( ctrlManager.get_selection_list() )
     
+def reset_selection_callback(*args):
+    selected_controllers = cmds.ls( selection=True )
+    for button in ctrlManager.buttons:
+        if button.controller in selected_controllers:
+            cmds.rotate( 0, 0, 0, button.controller, absolute=True)
+            cmds.move( 0, 0, 0, button.controller, absolute=True)
+        
+    
+
+    
 def main(path):
     global ctrlManager, selectionEventListener, root_path
     
@@ -152,7 +167,7 @@ def main(path):
     
 
 if __name__ == "__main__":
-    path = r"C:\Users\sylva\Documents\maya\2019\scripts\controllerSelector\\"
+    path = r"C:\Users\sylva\Documents\maya\2019\scripts\animPicker\\"
     if len(sys.argv) >= 2:
         path = sys.argv[1]
     main(path)

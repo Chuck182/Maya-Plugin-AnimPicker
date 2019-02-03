@@ -1,7 +1,7 @@
 {
     "general" : {
-        "width" : 855,
-        "height" : 525
+        "width" : 900,
+        "height" : 630
     },
     "colors": [
         {
@@ -33,11 +33,15 @@
     "tabs": [
         {
             "name" : "Body",
-            "background" : "background1.jpg"
+            "background" : "quentin_body.jpg"
         },
         {
             "name" : "Hands",
-            "background" : "background2.jpg"
+            "background" : "quentin_hands.jpg"
+        },
+        {
+            "name" : "Head",
+            "background" : "quentin_head.jpg"
         }
     ],
     "buttons": [
