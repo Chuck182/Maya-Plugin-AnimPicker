@@ -39,6 +39,18 @@ class ControllerManager():
                     self._selection_list.append(button.controller)
                     break
                     
+    def change_selected_controller(self, object_name):
+        """
+            Check if the object is a referenced controller from the animPicker.
+            If exists, let's add it to the selected_list
+        """
+        self.clear_selection()
+        for button in self._buttons:
+            if object_name == button.controller:
+                self._selection_list.append(button.controller)
+                break
+
+                    
     def remove_controller_from_selection(self, object_name):
         """
             Check if the object is in the selection list.
@@ -53,6 +65,28 @@ class ControllerManager():
                     
     def get_selection_list(self):
         return self._selection_list
+        
+    def is_button_unique(self, button):
+        currentlist = self._selection_list
+        unique = False
+        if len(currentlist) > 0:
+            if button.controller in currentlist:
+                currentlist.remove(button.controller)
+            if len(currentlist) == 0:
+                unique = True
+        return unique
+
+        
+    def is_buttongroup_unique(self, group_button):
+        currentlist = self._selection_list
+        unique = False
+        if len(currentlist) > 0:
+            for button in group_button.get_associated_buttons():
+                if button.controller in currentlist:
+                    currentlist.remove(button.controller)
+            if len(currentlist) == 0:
+                unique = True
+        return unique
                
         
     @property

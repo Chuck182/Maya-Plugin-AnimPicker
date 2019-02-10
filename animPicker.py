@@ -7,8 +7,8 @@ reload(configLoader)
 import controllerManager
 reload(controllerManager)
 
-WINDOW_ID = "ctrlSelector"
-WINDOW_TITLE = "Animation Picker 1.0"
+WINDOW_ID = "animPicker"
+WINDOW_TITLE = "Animation Picker 1.1"
 
 root_path = ""
 conf = None # ConfigLoader object
@@ -65,19 +65,35 @@ def add_group_buttons(buttons, layout, tab):
             cmds.formLayout( layout, edit=True, attachForm=[(b, 'top', button.top_offset), (b, 'left', button.left_offset)])
 
 def button_callback(button, *args):
-    if not button.is_selected(): # If the button is currently not selected, but it must be :
-        ctrlManager.add_controller_to_selection(button.controller)
-    else: # If the buttonn is currently selected, but is must not be :
-        ctrlManager.remove_controller_from_selection(button.controller)
+    mods = cmds.getModifiers()
+    if (mods & 1) > 0:  # If shift is pressed
+        if not button.is_selected(): # If the button is currently not selected, but it must be :
+            ctrlManager.add_controller_to_selection(button.controller)
+        else: # If the buttonn is currently selected, but is must not be :
+            ctrlManager.remove_controller_from_selection(button.controller)
+    else: # If shift is not pressed
+        if ctrlManager.is_button_unique(button): # If the button is currently not selected, but it must be :
+            ctrlManager.clear_selection() 
+        else:
+            ctrlManager.change_selected_controller(button.controller)
     cmds.select( ctrlManager.get_selection_list() )
 
 def group_button_callback(group_button, *args):
-    if not group_button.is_selected(): # If the button is currently not selected, but it must be :
-        for button in group_button.get_associated_buttons():
-            ctrlManager.add_controller_to_selection(button.controller)
-    else: # If the buttonn is currently selected, but is must not be :
-        for button in group_button.get_associated_buttons():
-            ctrlManager.remove_controller_from_selection(button.controller)
+    mods = cmds.getModifiers()
+    if (mods & 1) > 0:  # If shift is pressed
+        if not group_button.is_selected(): # If the button is currently not selected, but it must be :
+            for button in group_button.get_associated_buttons():
+                ctrlManager.add_controller_to_selection(button.controller)
+        else: # If the buttonn is currently selected, but is must not be :
+            for button in group_button.get_associated_buttons():
+                ctrlManager.remove_controller_from_selection(button.controller)
+    else: # If shift is not pressed
+        if ctrlManager.is_buttongroup_unique(group_button): # If only this group is selected
+            ctrlManager.clear_selection()
+        else:
+            ctrlManager.clear_selection()
+            for button in group_button.get_associated_buttons():
+                ctrlManager.add_controller_to_selection(button.controller)
     cmds.select( ctrlManager.get_selection_list() )
 
 def selection_event_callback(*args, **kwargs):
@@ -133,13 +149,14 @@ def reset_selection_callback(*args):
         if button.controller in selected_controllers:
             cmds.rotate( 0, 0, 0, button.controller, absolute=True)
             cmds.move( 0, 0, 0, button.controller, absolute=True)
-        
-    
+            
+  
 
     
 def main(path):
     global ctrlManager, selectionEventListener, root_path
     
+   
     # Setting root path
     root_path = path
     
@@ -161,7 +178,7 @@ def main(path):
     
     # Adding selection event listener
     selectionEventListener = OpenMaya.MEventMessage.addEventCallback("SelectionChanged", selection_event_callback)
-    
+        
     # Forcing initial selection sync
     selection_event_callback()
     

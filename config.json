@@ -53,7 +53,7 @@
             "color": "red",
             "controller": "curve1",
             "tab": "Body",
-            "groups" : ["spine", "head"]
+            "groups" : ["spine"]
         },
         {
             "height" : 30,
@@ -63,7 +63,7 @@
             "color": "orange",
             "controller": "Toto",
             "tab": "Body",
-            "groups" : ["spine", "head"]
+            "groups" : ["spine"]
         },
         {
             "height" : 20,
@@ -73,7 +73,7 @@
             "color": "red",
             "controller": "curve2",
             "tab": "Body",
-            "groups" : ["spine", "head"]
+            "groups" : ["spine"]
         },
         {
             "height" : 20,
